@@ -27,8 +27,12 @@ function shuffle(array) {
 
 const cardlist = document.querySelectorAll('.card');
 for (var i = 0; i < cardlist.length; i++) {
-  cardlist[i].addEventListener('click', function () {
+  var card = cardlist[i];
+  card.addEventListener('click', function (event) {
     console.log('The card was clicked!');
+    console.log(event.target);
+    event.target.className += " open";
+    event.target.className += " show";
 })};
 
 
