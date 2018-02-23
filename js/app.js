@@ -25,15 +25,23 @@ function shuffle(array) {
     return array;
 }
 
+function show_card_symbol(card) {
+  card.className += " open";
+  card.className += " show";
+};
+
 const cardlist = document.querySelectorAll('.card');
 for (var i = 0; i < cardlist.length; i++) {
   var card = cardlist[i];
   card.addEventListener('click', function (event) {
     console.log('The card was clicked!');
     console.log(event.target);
-    event.target.className += " open";
-    event.target.className += " show";
+    show_card_symbol(event.target);
+//    event.target.className += " open";
+//    event.target.className += " show";
 })};
+
+
 
 
 /*
