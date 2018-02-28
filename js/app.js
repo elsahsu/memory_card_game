@@ -1,7 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
+var open_cards = [];
+var matched_cards = [];
 
 /*
  * Display the cards on the page
@@ -10,7 +11,7 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -28,6 +29,37 @@ function shuffle(array) {
 function show_card_symbol(card) {
   card.className += " open";
   card.className += " show";
+  if (open_cards.length == 0) {
+    open_cards.push(card);
+  } else if (open_cards.length == 1){
+    console.log("Clicked card: " + card.firstElementChild.className);
+    for (var i = 0; i < open_cards.length; i++) {
+      var open_card = open_cards[i];
+      console.log("Open card:" + i + ": " + open_card.firstElementChild.className);
+      if (card.firstElementChild.className === open_card.firstElementChild.className) {
+        open_card.className = "card match";
+        card.className = "card match";
+        matched_cards.push(card);
+        matched_cards.push(open_card);
+        open_cards.pop();
+        return;
+      } else {
+          open_card.className = "card mismatch";
+          card.className = "card mismatch";
+          open_cards.push(card);
+          return;
+        }
+      }
+  } else if (open_cards.length > 1) {
+      for (var i = 0; i < open_cards.length; i++) {
+        var open_card = open_cards[i];
+        open_card.className = "card";
+      }
+      open_cards = [];
+      open_cards.push(card);
+  }
+
+  console.log(open_cards);
 };
 
 const cardlist = document.querySelectorAll('.card');
@@ -35,7 +67,7 @@ for (var i = 0; i < cardlist.length; i++) {
   var card = cardlist[i];
   card.addEventListener('click', function (event) {
     console.log('The card was clicked!');
-    console.log(event.target);
+// console.log(event.target);
     show_card_symbol(event.target);
 //    event.target.className += " open";
 //    event.target.className += " show";
