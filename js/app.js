@@ -1,17 +1,8 @@
-/*
- * Create a list that holds all of your cards
- */
+//lists of cards
 var open_cards = [];
 var matched_cards = [];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle stackoverflow.com/a/2450976
+// Shuffle
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
