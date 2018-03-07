@@ -53,6 +53,18 @@ function show_card_symbol(card) {
   console.log(open_cards);
 };
 
+function start_new_game() {
+  var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
+  var shuffled_cards = shuffle(all_cards);
+  console.log(shuffled_cards);
+  var deck = $(".deck");
+  for (var i = 0; i < shuffled_cards.length; i++) {
+    var imagename = shuffled_cards[i];
+    $(".deck").append('<li class="card"><i class="fa fa-' + imagename + '"></li>');
+  }
+}
+start_new_game();
+
 const cardlist = document.querySelectorAll('.card');
 for (var i = 0; i < cardlist.length; i++) {
   var card = cardlist[i];
@@ -63,14 +75,6 @@ for (var i = 0; i < cardlist.length; i++) {
 //    event.target.className += " open";
 //    event.target.className += " show";
 })};
-
-function start_new_game() {
-  var all_cards = ["anchor", "anchor", "bicyble", "bicyble", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
-  var shuffled_cards = shuffle(all_cards);
-  console.log(shuffled_cards);
-}
-start_new_game();
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
