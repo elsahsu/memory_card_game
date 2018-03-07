@@ -1,6 +1,7 @@
 //lists of cards
 var open_cards = [];
 var matched_cards = [];
+var movecount = 0;
 
 // Shuffle
 function shuffle(array) {
@@ -22,8 +23,11 @@ function show_card_symbol(card) {
   card.className += " show";
   if (open_cards.length == 0) {
     open_cards.push(card);
-  } else if (open_cards.length == 1){
+  } else if (open_cards.length == 1) {
     console.log("Clicked card: " + card.firstElementChild.className);
+    movecount = movecount + 1;
+    console.log(movecount);
+    $(".moves").html(movecount);
     for (var i = 0; i < open_cards.length; i++) {
       var open_card = open_cards[i];
       console.log("Open card:" + i + ": " + open_card.firstElementChild.className);
@@ -54,6 +58,7 @@ function show_card_symbol(card) {
 };
 
 function start_new_game() {
+  movecount = 0;
   var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
   var shuffled_cards = shuffle(all_cards);
   console.log(shuffled_cards);
