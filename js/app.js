@@ -64,7 +64,12 @@ for (var i = 0; i < cardlist.length; i++) {
 //    event.target.className += " show";
 })};
 
-
+function start_new_game() {
+  var all_cards = ["anchor", "anchor", "bicyble", "bicyble", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
+  var shuffled_cards = shuffle(all_cards);
+  console.log(shuffled_cards);
+}
+start_new_game();
 
 
 /*
