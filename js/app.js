@@ -2,6 +2,8 @@
 var open_cards = [];
 var matched_cards = [];
 var movecount = 0;
+var seconds = 0;
+var minutes = 0;
 
 // Shuffle
 function shuffle(array) {
@@ -43,6 +45,9 @@ function show_card_symbol(card) {
         card.className = "card match";
         matched_cards.push(card);
         matched_cards.push(open_card);
+        if (matched_cards.length === 16) {
+            clearInterval(myTimer);
+        }
         open_cards.pop();
         return;
       } else {
@@ -63,6 +68,17 @@ function show_card_symbol(card) {
 
   console.log(open_cards);
 };
+
+function add_second() {
+  seconds = seconds + 1;
+  if (seconds === 60) {
+    minutes = minutes + 1;
+    seconds = 0;
+  }
+  $(".seconds").html(minutes + ':' + seconds);
+  console.log('adding seconds succeed!');
+}
+var myTimer = setInterval(add_second, 1000);
 
 function start_new_game() {
   $(".deck").empty();

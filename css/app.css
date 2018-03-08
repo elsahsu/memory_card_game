@@ -102,11 +102,18 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: #cc9900;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+}
+
+.seconds {
+    padding: 50px;
+    color: #ff0000;
+    font-weight: bolder;
 }
 
 .score-panel .restart {
