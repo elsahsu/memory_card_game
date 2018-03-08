@@ -34,7 +34,7 @@ function show_card_symbol(card) {
         $('#star-1').remove();
       } else if (movecount === 20) {
         $('#star-0').remove();
-      } 
+      }
     for (var i = 0; i < open_cards.length; i++) {
       var open_card = open_cards[i];
       console.log("Open card:" + i + ": " + open_card.firstElementChild.className);
@@ -65,7 +65,10 @@ function show_card_symbol(card) {
 };
 
 function start_new_game() {
+  $(".deck").empty();
+  $(".stars").empty();
   movecount = 0;
+  $(".moves").html(movecount);
   var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
   var shuffled_cards = shuffle(all_cards);
   console.log(shuffled_cards);
@@ -80,10 +83,18 @@ function start_new_game() {
 
 start_new_game();
 
+//var.addEventListener('click', function(event){})-->JS
+//$(".selector").click(function(){})-->jQuery
+//restart
+$(".fa-repeat").click(function() {
+  console.log('restart button works asap!')
+  start_new_game();
+});
+
 const cardlist = document.querySelectorAll('.card');
 for (var i = 0; i < cardlist.length; i++) {
   var card = cardlist[i];
-  card.addEventListener('click', function (event) {
+  card.addEventListener('click', function(event) {
     console.log('The card was clicked!');
 // console.log(event.target);
     show_card_symbol(event.target);
