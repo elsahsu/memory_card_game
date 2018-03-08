@@ -28,6 +28,13 @@ function show_card_symbol(card) {
     movecount = movecount + 1;
     console.log(movecount);
     $(".moves").html(movecount);
+      if (movecount === 10) {
+        $('#star-2').remove();
+      } else if (movecount === 15) {
+        $('#star-1').remove();
+      } else if (movecount === 20) {
+        $('#star-0').remove();
+      } 
     for (var i = 0; i < open_cards.length; i++) {
       var open_card = open_cards[i];
       console.log("Open card:" + i + ": " + open_card.firstElementChild.className);
@@ -62,12 +69,15 @@ function start_new_game() {
   var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
   var shuffled_cards = shuffle(all_cards);
   console.log(shuffled_cards);
-  var deck = $(".deck");
   for (var i = 0; i < shuffled_cards.length; i++) {
     var imagename = shuffled_cards[i];
-    $(".deck").append('<li class="card"><i class="fa fa-' + imagename + '"></li>');
+    $(".deck").append('<li class="card"><i class="fa fa-' + imagename + '"></i></li>');
+  }
+  for (var i = 0; i < 3; i++) {
+    $(".stars").append('<li id="star-'+ i +'"><i class="fa fa-star"></i></li>');
   }
 }
+
 start_new_game();
 
 const cardlist = document.querySelectorAll('.card');
