@@ -17,7 +17,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/pattern-3160023_1920.jpg'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/pattern-3160023_1920.jpg');
     font-family: 'Coda', cursive;
 }
 
@@ -119,4 +119,47 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Styles for popup
+ */
+
+#win-dialog {
+  color: #ffb3da;
+  background: white;
+  display: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 45px;
+  font-weight: 300;
+  text-align: inherit;
+  width: 20%;
+  height: 400px;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+}
+
+#popup-time {
+  color: red;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+#popup-stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  color: #cc9900;
+}
+
+#popup-stars li {
+  list-style: none;
+  display: inline-block;
+}
+
+#popup-close:hover,
+#popup-close:focus {
+  cursor: pointer;
 }
