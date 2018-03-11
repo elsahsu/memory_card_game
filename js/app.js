@@ -5,8 +5,9 @@ var movecount = 0;
 var seconds = 0;
 var minutes = 0;
 var stars = 0;
+var myTimer = null;
 
-//Shuffle
+//Shuffle from stack overflow
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -51,8 +52,8 @@ function show_card_symbol(card) {
         matched_cards.push(card);
         matched_cards.push(open_card);
         if (matched_cards.length === 16) {
-            let modal = document.getElementById('win-dialog');
             clearInterval(myTimer);
+            let modal = document.getElementById('win-dialog');
             modal.style.display = "inline-block";
             for (let i = 0; i < stars; i++) {
                 $("#popup-stars").append('<li><i class="fa fa-star"></i></li>');
@@ -90,7 +91,6 @@ function add_second() {
   $(".seconds").html(minutes + ':' + seconds);
   console.log('adding seconds succeed!');
 }
-var myTimer;
 
 //start a game
 function start_new_game() {
@@ -132,6 +132,13 @@ start_new_game();
 //restart button
 $(".fa-repeat").click(function() {
   console.log('restart button works asap!')
+  start_new_game();
+});
+
+//new game button in popup
+$("#popup-new-game").click(function() {
+  let windialog = document.getElementById('win-dialog');
+  windialog.style.display = "none";
   start_new_game();
 });
 

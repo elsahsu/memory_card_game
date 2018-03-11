@@ -126,13 +126,13 @@ h1 {
  */
 
 #win-dialog {
-  color: #ffb3da;
-  background: white;
+  color: black;
+  background: #ffb3da;
   display: none;
   font-family: 'Open Sans', sans-serif;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 300;
-  text-align: inherit;
+  text-align: center;
   width: 20%;
   height: 400px;
   position: absolute;
@@ -140,10 +140,17 @@ h1 {
   left: 40%;
 }
 
+#performance {
+  font-size: 20px;
+  font-weight: 200;
+  text-align: center;
+}
+
 #popup-time {
-  color: red;
-  font-size: 30px;
+  color: black;
+  font-size: 20px;
   font-weight: 300;
+  text-align: center;
 }
 
 #popup-stars {
@@ -152,12 +159,21 @@ h1 {
   display: inline-block;
   margin: 0 5px 0 0;
   color: #cc9900;
+  text-align: center;
 }
 
 #popup-stars li {
   list-style: none;
   display: inline-block;
 }
+
+#popup-new-game {
+  background: #ff80c1;
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+}
+
 
 #popup-close:hover,
 #popup-close:focus {
