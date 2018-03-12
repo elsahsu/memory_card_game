@@ -1,20 +1,11 @@
 # Memory Game Project
 
-## Table of Contents
+This project is developed with JavaScript (inc. jQuery), HTML and CSS. Required assigment for Phase 2 of Google x Udacity FEND Scholarship program.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+Player Instructions:
+You could ownload/clone the repo (from GitHub) and open "index.html" to play the game. A game starts with 3 stars. For every 2 cards clicked, you make a move. You lose a star when your moves come to 10. Another star is removed when your moves come to 15. When your moves come to 20, you have no stars left on the score panel. At end of the game, a popup shows stars remained and tells the time you spend on the game.  
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Developer's Notes:
+1) JS timer: https://www.w3schools.com/js/js_timing.asp
+2) JS addEventListener: https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+3) CSS&JS popup: https://www.w3schools.com/howto/howto_js_popup.asp

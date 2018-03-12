@@ -77,8 +77,6 @@ function show_card_symbol(card) {
       open_cards = [];
       open_cards.push(card);
   }
-
-  console.log(open_cards);
 };
 
 //timer
@@ -89,7 +87,6 @@ function add_second() {
     seconds = 0;
   }
   $(".seconds").html(minutes + ':' + seconds);
-  console.log('adding seconds succeed!');
 }
 
 //start a game
@@ -98,6 +95,7 @@ function start_new_game() {
   movecount = 0;
   seconds = 0;
   minutes = 0;
+  open_cards = [];
   $(".seconds").html(minutes + ':' + seconds);
   $(".deck").empty();
   $(".stars").empty();
@@ -105,7 +103,6 @@ function start_new_game() {
   myTimer = setInterval(add_second, 1000);
   var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
   var shuffled_cards = shuffle(all_cards);
-  console.log(shuffled_cards);
   for (var i = 0; i < shuffled_cards.length; i++) {
     var imagename = shuffled_cards[i];
     $(".deck").append('<li class="card"><i class="fa fa-' + imagename + '"></i></li>');
@@ -116,7 +113,6 @@ function start_new_game() {
   for (var i = 0; i < cardlist.length; i++) {
     var card = cardlist[i];
     card.addEventListener('click', function(event) {
-      console.log('The card was clicked!');
   // console.log(event.target);
       show_card_symbol(event.target);
   //    event.target.className += " open";
@@ -131,7 +127,6 @@ start_new_game();
 
 //restart button
 $(".fa-repeat").click(function() {
-  console.log('restart button works asap!')
   start_new_game();
 });
 
@@ -151,5 +146,4 @@ let span = document.getElementById("popup-close");
 span.onclick = function() {
   let windialog = document.getElementById('win-dialog');
   windialog.style.display = "none";
-  console.log("close the popup!");
 }
