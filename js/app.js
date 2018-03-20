@@ -24,29 +24,45 @@ function shuffle(array) {
 
 //show & pair cards, count moves, remove stars
 function show_card_symbol(card) {
-  card.className += " open";
-  card.className += " show";
+  if (card.firstElementChild == null) {
+      console.log("Warning: Card has no children: " + card.className);
+      return;
+  }
+
+  console.log("Begin: Clicked card: " + card.firstElementChild.className);
+  console.log("Opened cards:" + open_cards.length);
+  for (var i = 0; i < open_cards.length; i++) {
+    var open_card = open_cards[i];
+    console.log(open_card.firstElementChild.className);
+  }
+
   if (open_cards.length == 0) {
+    // Clicked on the first card. Just show it.
+    card.className += " open";
+    card.className += " show";
     open_cards.push(card);
   } else if (open_cards.length == 1) {
-    console.log("Clicked card: " + card.firstElementChild.className);
+    // Clicked second card. Compare if matches the first card.
+    var open_card = open_cards[0];
+    if (card === open_card) {
+      console.log("Clicked on already opened card. No action.");
+      return;
+    }
     movecount = movecount + 1;
-    console.log(movecount);
+    // console.log(movecount);
     $(".moves").html(movecount);
-      if (movecount === 10) {
+    if (movecount === 10) {
         stars = 2;
         $('#star-2').remove();
-      } else if (movecount === 15) {
+    } else if (movecount === 15) {
         stars = 1;
         $('#star-1').remove();
-      } else if (movecount === 20) {
+    } else if (movecount === 20) {
         stars = 0;
         $('#star-0').remove();
-      }
-    for (var i = 0; i < open_cards.length; i++) {
-      var open_card = open_cards[i];
-      console.log("Open card:" + i + ": " + open_card.firstElementChild.className);
-      if (card.firstElementChild.className === open_card.firstElementChild.className) {
+    }
+    console.log("Comparing to open card: " + open_card.firstElementChild.className);
+    if (card.firstElementChild.className === open_card.firstElementChild.className) {
         open_card.className = "card match";
         card.className = "card match";
         matched_cards.push(card);
@@ -61,14 +77,14 @@ function show_card_symbol(card) {
             $("#popup-time").html(minutes + ':' + seconds);
         }
         open_cards.pop();
+        console.log('Open cards after pop: ' + open_cards.length);
         return;
-      } else {
-          open_card.className = "card mismatch";
-          card.className = "card mismatch";
-          open_cards.push(card);
-          return;
-        }
-      }
+    } else {
+        open_card.className = "card mismatch";
+        card.className = "card mismatch";
+        open_cards.push(card);
+        return;
+    }
   } else if (open_cards.length > 1) {
       for (var i = 0; i < open_cards.length; i++) {
         var open_card = open_cards[i];
@@ -76,6 +92,8 @@ function show_card_symbol(card) {
       }
       open_cards = [];
       open_cards.push(card);
+      card.className += " open";
+      card.className += " show";
   }
 };
 
@@ -96,10 +114,12 @@ function start_new_game() {
   seconds = 0;
   minutes = 0;
   open_cards = [];
+  matched_cards = [];
   $(".seconds").html(minutes + ':' + seconds);
   $(".deck").empty();
   $(".stars").empty();
   $(".moves").html(movecount);
+  clearInterval(myTimer);
   myTimer = setInterval(add_second, 1000);
   var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
   var shuffled_cards = shuffle(all_cards);
