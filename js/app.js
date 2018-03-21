@@ -1,3 +1,7 @@
+//JS strict mode
+(function () {
+  'use strict';
+
 //variables
 let openCards = [];
 let matchedCards = [];
@@ -167,3 +171,5 @@ span.onclick = function() {
   let windialog = document.getElementById('win-dialog');
   windialog.style.display = "none";
 }
+
+}());
