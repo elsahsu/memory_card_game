@@ -1,11 +1,11 @@
 //variables
-var open_cards = [];
-var matched_cards = [];
-var movecount = 0;
-var seconds = 0;
-var minutes = 0;
-var stars = 0;
-var myTimer = null;
+let openCards = [];
+let matchedCards = [];
+let movecount = 0;
+let seconds = 0;
+let minutes = 0;
+let stars = 0;
+let myTimer = null;
 
 //Shuffle from stack overflow
 function shuffle(array) {
@@ -23,28 +23,28 @@ function shuffle(array) {
 }
 
 //show & pair cards, count moves, remove stars
-function show_card_symbol(card) {
+function showCardSymbol(card) {
   if (card.firstElementChild == null) {
       console.log("Warning: Card has no children: " + card.className);
       return;
   }
 
   console.log("Begin: Clicked card: " + card.firstElementChild.className);
-  console.log("Opened cards:" + open_cards.length);
-  for (var i = 0; i < open_cards.length; i++) {
-    var open_card = open_cards[i];
-    console.log(open_card.firstElementChild.className);
+  console.log("Opened cards:" + openCards.length);
+  for (let i = 0; i < openCards.length; i++) {
+    let openCard = openCards[i];
+    console.log(openCard.firstElementChild.className);
   }
 
-  if (open_cards.length == 0) {
+  if (openCards.length == 0) {
     // Clicked on the first card. Just show it.
     card.className += " open";
     card.className += " show";
-    open_cards.push(card);
-  } else if (open_cards.length == 1) {
+    openCards.push(card);
+  } else if (openCards.length == 1) {
     // Clicked second card. Compare if matches the first card.
-    var open_card = open_cards[0];
-    if (card === open_card) {
+    let openCard = openCards[0];
+    if (card === openCard) {
       console.log("Clicked on already opened card. No action.");
       return;
     }
@@ -61,13 +61,13 @@ function show_card_symbol(card) {
         stars = 0;
         $('#star-0').remove();
     }
-    console.log("Comparing to open card: " + open_card.firstElementChild.className);
-    if (card.firstElementChild.className === open_card.firstElementChild.className) {
-        open_card.className = "card match";
+    console.log("Comparing to openCard: " + openCard.firstElementChild.className);
+    if (card.firstElementChild.className === openCard.firstElementChild.className) {
+        openCard.className = "card match";
         card.className = "card match";
-        matched_cards.push(card);
-        matched_cards.push(open_card);
-        if (matched_cards.length === 16) {
+        matchedCards.push(card);
+        matchedCards.push(openCard);
+        if (matchedCards.length === 16) {
             clearInterval(myTimer);
             let modal = document.getElementById('win-dialog');
             modal.style.display = "inline-block";
@@ -76,29 +76,29 @@ function show_card_symbol(card) {
             };
             $("#popup-time").html(minutes + ':' + seconds);
         }
-        open_cards.pop();
-        console.log('Open cards after pop: ' + open_cards.length);
+        openCards.pop();
+        console.log('Open cards after pop: ' + openCards.length);
         return;
     } else {
-        open_card.className = "card mismatch";
+        openCard.className = "card mismatch";
         card.className = "card mismatch";
-        open_cards.push(card);
+        openCards.push(card);
         return;
     }
-  } else if (open_cards.length > 1) {
-      for (var i = 0; i < open_cards.length; i++) {
-        var open_card = open_cards[i];
-        open_card.className = "card";
+  } else if (openCards.length > 1) {
+      for (let i = 0; i < openCards.length; i++) {
+        let openCard = openCards[i];
+        openCard.className = "card";
       }
-      open_cards = [];
-      open_cards.push(card);
+      openCards = [];
+      openCards.push(card);
       card.className += " open";
       card.className += " show";
   }
 };
 
 //timer
-function add_second() {
+function addSecond() {
   seconds = seconds + 1;
   if (seconds === 60) {
     minutes = minutes + 1;
@@ -108,53 +108,53 @@ function add_second() {
 }
 
 //start a game
-function start_new_game() {
+function startNewGame() {
   stars = 3;
   movecount = 0;
   seconds = 0;
   minutes = 0;
-  open_cards = [];
-  matched_cards = [];
+  openCards = [];
+  matchedCards = [];
   $(".seconds").html(minutes + ':' + seconds);
   $(".deck").empty();
   $(".stars").empty();
   $(".moves").html(movecount);
   clearInterval(myTimer);
-  myTimer = setInterval(add_second, 1000);
-  var all_cards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
-  var shuffled_cards = shuffle(all_cards);
-  for (var i = 0; i < shuffled_cards.length; i++) {
-    var imagename = shuffled_cards[i];
+  myTimer = setInterval(addSecond, 1000);
+  const allCards = ["anchor", "anchor", "bicycle", "bicycle", "bolt", "bolt", "bomb", "bomb", "cube", "cube", "diamond", "diamond", "leaf", "leaf", "paper-plane", "paper-plane"]
+  let shuffledCards = shuffle(allCards);
+  for (let i = 0; i < shuffledCards.length; i++) {
+    let imagename = shuffledCards[i];
     $(".deck").append('<li class="card"><i class="fa fa-' + imagename + '"></i></li>');
   }
 
   //addEventListener to cards
   let cardlist = document.querySelectorAll('.card');
-  for (var i = 0; i < cardlist.length; i++) {
-    var card = cardlist[i];
+  for (let i = 0; i < cardlist.length; i++) {
+    let card = cardlist[i];
     card.addEventListener('click', function(event) {
   // console.log(event.target);
-      show_card_symbol(event.target);
+      showCardSymbol(event.target);
   //    event.target.className += " open";
   //    event.target.className += " show";
   })};
 
-  for (var i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i++) {
     $(".stars").append('<li id="star-'+ i +'"><i class="fa fa-star"></i></li>');
   }
 }
-start_new_game();
+startNewGame();
 
 //restart button
 $(".fa-repeat").click(function() {
-  start_new_game();
+  startNewGame();
 });
 
 //new game button in popup
 $("#popup-new-game").click(function() {
   let windialog = document.getElementById('win-dialog');
   windialog.style.display = "none";
-  start_new_game();
+  startNewGame();
 });
 
 //var.addEventListener('click', function(event){})-->JS
